@@ -38,7 +38,7 @@ resource "digitalocean_droplet" "k8s-controlplane" {
   ssh_keys  = "${var.ssh_keys}"
 }
 
-resource "digitalocean_droplet" "rancheragent-worker" {
+resource "digitalocean_droplet" "k8s-worker" {
   count     = "${var.count_k8s_worker_nodes}"
   image     = "ubuntu-16-04-x64"
   name      = "${var.prefix}-worker-${count.index}-worker"
