@@ -1,0 +1,5 @@
+#!/bin/bash -x
+
+if [ `command -v curl` ]; then
+  curl -sL https://releases.rancher.com/install-docker/${docker_version_worker}.sh | sh
+fi
