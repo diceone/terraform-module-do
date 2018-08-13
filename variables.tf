@@ -8,10 +8,10 @@ variable "do_token" {
 }
 
 variable "prefix" {
-  default = "yourname"
+  default = "test"
 }
 
-
+# if you want to have everything on the nodes
 variable "count_k8s_worker_all_nodes" {
   default = "3"
 }
