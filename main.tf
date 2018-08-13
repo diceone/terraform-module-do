@@ -9,7 +9,7 @@ resource "digitalocean_droplet" "k8sserver" {
 }
 
 resource "digitalocean_droplet" "k8s-all" {
-  count     = "${var.count_worker_all_nodes}"
+  count     = "${var.count_k8s_worker_all_nodes}"
   image     = "ubuntu-16-04-x64"
   name      = "${var.prefix}-worker-${count.index}-all"
   region    = "${var.region}"
@@ -49,22 +49,20 @@ resource "digitalocean_droplet" "rancheragent-worker" {
 }
 
 data "template_file" "userdata_server" {
-  template = "${file("files/userdata_server")}"
+  template = "${file("${path.module}/files/userdata_server")}"
 
   vars {
-    admin_password        = "${var.admin_password}"
     cluster_name          = "${var.cluster_name}"
     docker_version_server = "${var.docker_version_server}"
   }
 }
 
 data "template_file" "userdata_agent" {
-  template = "${file("files/userdata_agent")}"
+  template = "${file("${path.module}/files/userdata_agent")}"
 
   vars {
-    admin_password       = "${var.admin_password}"
-    cluster_name         = "${var.cluster_name}"
-    docker_version_agent = "${var.docker_version_worker}"
-    server_address       = "${digitalocean_droplet.k8sserver.ipv4_address}"
+    cluster_name          = "${var.cluster_name}"
+    docker_version_worker = "${var.docker_version_worker}"
+    server_address        = "${digitalocean_droplet.k8sserver.ipv4_address}"
   }
 }

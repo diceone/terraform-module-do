@@ -1,3 +1,3 @@
 output "k8sserver-ip" {
-  value = ["https://${hcloud_server.k8sserver.ipv4_address}"]
+  value = ["${digitalocean_droplet.k8sserver.ipv4_address}"]
 }

@@ -12,7 +12,7 @@ variable "prefix" {
 }
 
 
-variable "count_k8s_all_nodes" {
+variable "count_k8s_worker_all_nodes" {
   default = "3"
 }
 
